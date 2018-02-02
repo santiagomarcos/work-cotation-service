@@ -33,7 +33,7 @@ class Quote extends Model
      */
     public function location()
     {
-        return $this->hasOne(Location::class,'location_id');
+        return $this->belongsTo(Location::class,'location_id');
     }
 
     /**
@@ -42,5 +42,23 @@ class Quote extends Model
     public function vehicle()
     {
         return $this->hasOne(Vehicle::class,'vehicle_id');
+    }
+
+    public function getAllCharacteristics()
+    {
+        $result = [];
+        if($this->is_taxy)
+            $result[] = 'taxi';
+
+        if($this->is_uber)
+            $result[] = 'uber';
+
+        if($this->is_armored_car)
+            $result[] = 'blindado';
+
+        if($this->zero_km)
+            $result[] = 'zero km';
+
+        return $result;
     }
 }

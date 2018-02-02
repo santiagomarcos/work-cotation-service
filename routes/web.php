@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('quotes','QuoteController');
+Route::get('quotes/{quote_id}/resend_email', [
+    'as'=>'quotes.resend_email',
+    'uses'=>'QuoteController@resendEmail']);
